@@ -80,9 +80,9 @@ $mail->Body    = $html;
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    $f = fopen($failed_cache . date('m-d-Y_his') . ".log", "w") or die("Unable to open file!");
+    fwrite($f, $html);
+    fclose($f);
 } else {
     echo 'Message has been sent';
-   	$f = fopen($failed_cache . date('m-d-Y_his') . ".log", "w") or die("Unable to open file!");
-	fwrite($f, $html);
-	fclose($f);
 }
